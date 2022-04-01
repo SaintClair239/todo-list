@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #EA5959;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inside-container {
+    border-radius:10px;
+    background-color: #FFF;
+    height: 70%;
+    width: 70%;
+
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.section {
+    padding: 1rem;
+    line-height: 1.7rem;
+}
+
+.categories {
+    margin: 4rem 1rem;
+}
+
+.category-btn-input {
+    display: flex;
+    flex-direction: column;
+}
+
+#category-input {
+    margin-top: 1rem;
+    outline: 1px solid black;
+}
+
+button {
+    padding: .5rem;
+    border-radius: 7px;
+    margin: 1.3rem 0;
+}
+
+.top-task-wrapper {
+    margin-right: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tasks-details {
+    margin: 1rem;
+    transition: 200ms ease-in-out;
+}
+
+.tasks-details.inactive {
+    display: none;
+}
+
+.tasks-functions {
+    height: 1.3rem;
+}
+
+.modal {
+    padding: .5rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: #FFF;
+    z-index: 10;
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin: 1.3rem;
+}
+
+.modal input, .modal textarea {
+    outline: 1px solid black;
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.save.inactive {
+    display: none;
+}
+
+.submit.inactive {
+    display: none;
+}
