@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="inside-container">
+            <div class="categories-container section">
+                <h3>Categories</h3>
+                    <div class="category-btn-input">
+                        <input type="text" name="category-input" id="category-input">
+                        <button class="category-btn">Add Category</button>
+                    </div>
+                    <div class="categories"></div>
+            </div>
+            <div class="tasks-container section">
+                <h3>Tasks</h3>
+                <button class="add-tasks">Add Tasks</button>
+                <div class="tasks">
+                    <div class="task">
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="modal">
+            <form>
+                <div class="form category">
+                    <label for="categories-form">Category</label>
+                    <select name="categories-form" id="categories-form"></select>
+                </div>
+                <div class="form name">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" class="names-form">
+                </div>
+                <div class="form description">
+                    <label for="descriptions-form">Description</label>
+                    <textarea name="descriptions-form" class="descriptions-form"></textarea>
+                </div>
+                <div class="form due-date">
+                    <label for="due-date">Date</label>
+                    <input type="date" name="due-date" class="due-dates-form">
+                </div
+                ><div class="form form-buttons">
+                    <button class="submit">Submit</button>
+                    <button class="save inactive">Save</button>
+                    <button class="close">Close</button>
+                </div>
+            </form>
+        </div>
+        <div id="overlay"></div>
+    </div>
+</body>
+</html>
