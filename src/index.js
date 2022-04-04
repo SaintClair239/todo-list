@@ -1,25 +1,20 @@
 import './styles.css'
-import { categoryLists, getCategories } from './category.js'
-import { displayCategories } from './category.js'
-import { updateModal } from './modal.js'
+import { getCategories, categoryLists, displayCategories } from './category.js'
 import { taskObjects, tasksArr } from './tasks.js';
-import { pushTasks } from './tasks.js'
-import { displayTasks } from './tasks.js';
-import { deleteTask } from './tasksFunctions.js'
-import { expandTask } from './tasksFunctions.js'
-import { openModal } from './modal.js'
-import { closeModal } from './modal.js'
-import { saveAndSubmit } from './modal.js';
-import { clearField, fillField } from './DOM.js';
-import { init } from './tasks.js';
+import { pushTasks, init  } from './tasks.js'
+import { deleteTask, expandTask } from './tasksFunctions.js'
+import { openModal, closeModal, saveAndSubmit, updateModal } from './modal.js'
+import { domUpdate } from './DOM.js';
+import { saveCategories, saveTasks } from './localStorage'
 
 init()
+console.log(categoryLists)
 
 const open = document.querySelector('.add-tasks');
 open.addEventListener('click', ()=> {
     updateModal();
     openModal()
-    clearField()
+    domUpdate.clearField()
 });
 
 const close = document.querySelector('.container');
@@ -32,8 +27,8 @@ close.addEventListener('click', (e)=> {
     if (e.target.classList.contains('submit')) {
         e.preventDefault()
         pushTasks(taskObjects());
-        displayTasks(tasksArr)
-    
+        domUpdate.displayTasks(tasksArr)
+        saveTasks()
         closeModal()
     }
 })
@@ -44,6 +39,7 @@ addCategory.addEventListener('click', () => {
     if (categoryInputValue == "") return
     getCategories(categoryInputValue)
     displayCategories()
+    saveCategories()
     document.getElementById('category-input').value = "";
 });
 
@@ -53,8 +49,9 @@ let targetElement;
 const taskFunction = document.querySelector('.tasks');
 taskFunction.addEventListener('click', (e) => {
     if (e.target.classList.contains('delete')) {
-        deleteTask(e.target)
-        displayTasks(tasksArr)
+        deleteTask(e.target);
+        saveTasks()
+        domUpdate.displayTasks(tasksArr)
         
     } 
 
@@ -66,7 +63,7 @@ taskFunction.addEventListener('click', (e) => {
         saveAndSubmit()
         const index = Array.from(e.target.parentElement.parentElement.parentElement.parentElement.children).indexOf(e.target.parentElement.parentElement.parentElement)
         tasksArr[index].editModal()
-        fillField(tasksArr[index])
+        domUpdate.fillField(tasksArr[index])
         targetElement = tasksArr[index]
     }
 })
@@ -75,9 +72,12 @@ const save = document.querySelector('.modal');
 save.addEventListener('click', (e) => {
     if (e.target.classList.contains('save')) { 
         e.preventDefault()
-        targetElement.editTask() 
-        displayTasks(tasksArr)
-        clearField()    
+        console.log(targetElement)
+        targetElement.editTask()  
+        domUpdate.displayTasks(tasksArr)
+        domUpdate.clearField()
+        saveTasks()
+        
         closeModal()
     } 
 })
@@ -86,15 +86,15 @@ const filter = document.querySelector('.categories');
 filter.addEventListener('click', (e) => {
     categoryLists.forEach(category2 => {
         if (e.target.textContent == category2 && e.target.textContent != "All") {
-            let filtered = [];
+            const filtered = [];
             for (let i = 0; i < tasksArr.length; i++) {
                 if (tasksArr[i].category == category2) {
                 filtered.push(tasksArr[i]);
                 }
             }
-            displayTasks(filtered)
+            domUpdate.displayTasks(filtered)
         } else if (e.target.textContent == "All") {
-            displayTasks(tasksArr)
+            domUpdate.displayTasks(tasksArr)
         }
     })
 })

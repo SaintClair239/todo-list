@@ -40,11 +40,6 @@ const updateModal = function() {
     });
 };
 
-const removeModalDiv = function() {
-    const remove = document.querySelector('.container');
-    remove.removeChild(remove.children[2])
-    remove.removeChild(remove.children[1])
-}
 
 
-export { updateModal, openModal, closeModal, removeModalDiv, saveAndSubmit }
+export { updateModal, openModal, closeModal, saveAndSubmit }

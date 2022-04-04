@@ -1,7 +1,7 @@
-const categoryLists = ["All"]
+const categoryLists = ["All"];
 const getCategories = function(category) {
-      categoryLists.push(category)
-}
+      categoryLists.push(category); 
+};
 
 const displayCategories = function() {
       const categories = document.querySelector('.categories');
@@ -10,6 +10,7 @@ const displayCategories = function() {
             const p = document.createElement('p');
             p.textContent = category
             categories.appendChild(p);  
-      })
-}
+      });
+};
+
 export { categoryLists, getCategories, displayCategories }
